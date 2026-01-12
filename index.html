@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FOXYBLOX | Script Hub</title>
+    <style>
+        :root { --main: #ff0000; --bg: #0f0f0f; --card: #181818; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        header { width: 100%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        h1 { color: var(--main); font-size: 1.8rem; margin: 0; }
+
+        .search-box { width: 100%; max-width: 600px; margin-bottom: 40px; }
+        #searchInput { width: 100%; padding: 15px 25px; border-radius: 10px; border: 1px solid #333; background: var(--card); color: white; font-size: 1rem; outline: none; transition: 0.3s; }
+        #searchInput:focus { border-color: var(--main); box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; width: 100%; max-width: 1200px; }
+        .card { background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid #222; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: #444; }
+        
+        .card-img { width: 100%; height: 150px; background-size: cover; background-position: center; }
+        .card-content { padding: 15px; }
+        .card h2 { margin: 0; font-size: 1.2rem; margin-bottom: 8px; }
+        .card p { color: #888; font-size: 0.85rem; margin-bottom: 20px; line-height: 1.4; height: 40px; }
+        
+        .copy-btn { background: #222; color: white; border: 1px solid #444; padding: 10px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .copy-btn:hover { background: var(--main); border-color: var(--main); }
+
+        .notification { position: fixed; bottom: 20px; right: 20px; background: #00ff00; color: black; padding: 12px 25px; border-radius: 8px; font-weight: bold; display: none; z-index: 1000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>FOXYBLOX</h1>
+        <div style="color: #666;">Scripts mis à jour</div>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search scripts for games..." onkeyup="search()">
+    </div>
+
+    <div class="grid" id="scriptGrid">
+        
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://tr.rbxcdn.com/180da670197d1b312e7960334f59039a/420/420/Image/Png');"></div>
+            <div class="card-content">
+                <h2>Foxy Executor V1</h2>
+                <p>Internal UI with script execution support and tools.</p>
+                <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Foxy869/Foxy-Executor-/main/script.lua\'))()')">COPY SCRIPT</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://tr.rbxcdn.com/f0980c98f80456a0d4b8e235e128182f/420/420/Image/Png');"></div>
+            <div class="card-content">
+                <h2>Blox Fruits Hub</h2>
+                <p>Auto-farm level, raid, auto-sea, and fruit finder.</p>
+                <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/RealHacker/BloxFruits/main/source.lua\'))()')">COPY SCRIPT</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://tr.rbxcdn.com/c44412f864696a40a2569c7621f37e1a/420/420/Image/Png');"></div>
+            <div class="card-content">
+                <h2>Brookhaven Admin</h2>
+                <p>Unlock all gamepasses, car speed, and troll commands.</p>
+                <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/IceBear/Brookhaven/main/gui.lua\'))()')">COPY SCRIPT</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://tr.rbxcdn.com/393608124231f47895e6f663f739199d/420/420/Image/Png');"></div>
+            <div class="card-content">
+                <h2>Murder Mystery 2</h2>
+                <p>Silent aim, esp, auto-win as sheriff or murderer.</p>
+                <button class="copy-btn" onclick="copy('loadstring(game:HttpGet(\'https://raw.githubusercontent.com/Gamer/MM2/main/script\'))()')">COPY SCRIPT</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="notif" class="notification">Script Copied!</div>
+
+    <script>
+        function copy(text) {
+            navigator.clipboard.writeText(text);
+            const notif = document.getElementById('notif');
+            notif.style.display = 'block';
+            setTimeout(() => { notif.style.display = 'none'; }, 2000);
+        }
+
+        function search() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let cards = document.getElementsByClassName('card');
+            for (let card of cards) {
+                let title = card.querySelector('h2').innerText.toLowerCase();
+                card.style.display = title.includes(input) ? "" : "none";
+            }
+        }
+    </script>
+</body>
+  </html>
+
